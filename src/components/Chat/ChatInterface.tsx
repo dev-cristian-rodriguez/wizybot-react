@@ -58,14 +58,40 @@ const ChatInterface = () => {
   return (
     <div className="flex flex-col h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-primary-color text-white p-4 shadow-md">
-        <h1 className="text-xl font-semibold">Wizybot Chat</h1>
-        <p className="text-sm text-white/80">AI Customer Support & Sales Agent</p>
+      <div className="bg-primary-color text-white shadow-lg">
+        <div className="px-6 py-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border-2 border-white/20">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-xl font-bold">Wizybot</h1>
+              <p className="text-sm text-white/90 font-medium">AI Assistant</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-hidden min-h-0">
-        <MessageList messages={messages} isLoading={isLoading} />
+      <div className="flex-1 overflow-hidden min-h-0 bg-white">
+        <MessageList 
+          messages={messages} 
+          isLoading={isLoading} 
+          onSuggestionClick={handleSendMessage}
+        />
       </div>
 
       {/* Input */}
