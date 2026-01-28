@@ -1,19 +1,21 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
-import { API_BASE_URL } from '@/constants/environment';
+import { getApiBaseUrl } from '@/store/environment.store';
 
 // Creates an axios instance with default configuration
-const createAxiosInstance = (baseURL: string): AxiosInstance => {
+const createAxiosInstance = (): AxiosInstance => {
   const instance = axios.create({
-    baseURL,
+    baseURL: getApiBaseUrl(),
     timeout: 30000, // 30 seconds timeout
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
-  // Request interceptor
+  // Request interceptor - update baseURL dynamically
   instance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
+      // Update baseURL from store on each request
+      config.baseURL = getApiBaseUrl();
       // Add any auth tokens or headers here if needed
       return config;
     },
@@ -57,6 +59,6 @@ const createAxiosInstance = (baseURL: string): AxiosInstance => {
 };
 
 // Create and export the API instance
-const api = createAxiosInstance(API_BASE_URL);
+const api = createAxiosInstance();
 
 export default api;

@@ -11,6 +11,7 @@ export const useChat = () => {
     },
     onError: (error: any) => {
       console.error('useChat error:', error);
+
       // Handle different error types
       if (error.response) {
         const status = error.response.status;
