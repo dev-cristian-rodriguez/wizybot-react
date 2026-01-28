@@ -18,9 +18,9 @@ const MessageList = ({ messages, isLoading }: MessageListProps) => {
   }, [messages, isLoading]);
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-2">
+    <div className="h-full overflow-y-auto p-4 space-y-2">
       {messages.length === 0 && !isLoading && (
-        <div className="flex items-center justify-center h-full text-gray-500">
+        <div className="flex items-center justify-center h-full text-gray-500 min-h-[400px]">
           <div className="text-center">
             <p className="text-lg font-medium mb-2">Welcome to Wizybot!</p>
             <p className="text-sm">
