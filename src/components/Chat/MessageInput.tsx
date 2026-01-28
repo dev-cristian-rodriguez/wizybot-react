@@ -31,6 +31,13 @@ const MessageInput = ({ onSendMessage, isLoading }: MessageInputProps) => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
     <div className="border-t border-gray-200 p-4 bg-white">
       <form onSubmit={handleSubmit} className="flex gap-2 items-end">
@@ -38,7 +45,7 @@ const MessageInput = ({ onSendMessage, isLoading }: MessageInputProps) => {
           ref={textareaRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          // onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyDown}
           placeholder="Type your message..."
           className="flex-1 resize-none border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent overflow-y-auto"
           rows={1}
